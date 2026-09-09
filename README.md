@@ -60,7 +60,9 @@ Solo se activa en dispositivos con ratón real (`pointer: fine`) y respeta `pref
 ## Pendiente de contenido real
 
 - **Foto**: el Hero/About no usan foto todavía — las imágenes originales eran avatares Bitmoji, no fotos reales.
-- **CV**: `public/cv/CV-Jaskaran-Singh.pdf` es un placeholder (copia de `legacy-static/assets/MyCurriclum.pdf`).
 - **Diseño 3D en Proyectos**: solo hay proyectos web reales (Vitalis, Gmail Swipe, Joc del Virus) — falta añadir trabajo de SolidWorks/AutoCAD.
 - **Redes sociales**: no hay enlaces de LinkedIn/GitHub reales todavía.
-- **Formulario de contacto**: pendiente de que configures tu `VITE_WEB3FORMS_KEY` (ver arriba) para que te lleguen los mensajes al correo.
+
+## CV
+
+`public/cv/CV-Jaskaran-Singh.pdf` — generado a partir de `src/i18n/translations.js` (mismo contenido que Experiencia/Skills/Idiomas de la web) con el mismo sistema visual del portfolio (Space Grotesk, JetBrains Mono, paleta ink/paper/blueprint, grid de fondo). Es un PDF real con texto vectorial, no una captura de pantalla. Si cambias tu experiencia en `translations.js`, recuerda regenerar también el PDF a mano (no se genera automáticamente en el build).
