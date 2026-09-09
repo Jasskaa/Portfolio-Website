@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 const NAV_ITEMS = [
   { key: "home", href: "#home" },
@@ -65,7 +66,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[110] transition-all duration-500 ease-smooth ${
-        menuOpen ? "text-paper" : "text-ink"
+        menuOpen ? "text-snow" : "text-ink"
       } ${scrolled && !menuOpen ? "bg-paper/95 border-b border-ink/10" : "bg-transparent"}`}
     >
       <div className="mx-auto flex h-16 md:h-20 max-w-6xl items-center justify-between px-6">
@@ -85,11 +86,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <ThemeToggle dark={menuOpen} />
+
           <button
             onClick={toggleLanguage}
             className={`mono-label flex items-center gap-1 rounded-full border px-3 py-1.5 transition-colors ${
-              menuOpen ? "border-paper/25 hover:border-paper/50" : "border-ink/15 hover:border-ink/40"
+              menuOpen ? "border-snow/25 hover:border-snow/50" : "border-ink/15 hover:border-ink/40"
             }`}
             aria-label="Toggle language"
           >
@@ -107,17 +110,17 @@ export default function Header() {
             <motion.span
               animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className={`block h-px w-6 ${menuOpen ? "bg-paper" : "bg-ink"}`}
+              className={`block h-px w-6 ${menuOpen ? "bg-snow" : "bg-ink"}`}
             />
             <motion.span
               animate={{ opacity: menuOpen ? 0 : 1 }}
               transition={{ duration: 0.2 }}
-              className={`block h-px w-6 ${menuOpen ? "bg-paper" : "bg-ink"}`}
+              className={`block h-px w-6 ${menuOpen ? "bg-snow" : "bg-ink"}`}
             />
             <motion.span
               animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className={`block h-px w-6 ${menuOpen ? "bg-paper" : "bg-ink"}`}
+              className={`block h-px w-6 ${menuOpen ? "bg-snow" : "bg-ink"}`}
             />
           </button>
         </div>
@@ -131,7 +134,7 @@ export default function Header() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-[100] flex flex-col justify-between overflow-hidden bg-ink px-6 pb-10 pt-24 text-paper md:hidden"
+            className="fixed inset-0 z-[100] flex flex-col justify-between overflow-hidden bg-void px-6 pb-10 pt-24 text-snow md:hidden"
           >
             {/* faint blueprint grid, consistent with the rest of the site */}
             <div
@@ -151,9 +154,9 @@ export default function Header() {
                   variants={itemVariants}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="group flex items-baseline gap-4 border-b border-paper/10 py-4 first:pt-0"
+                  className="group flex items-baseline gap-4 border-b border-snow/10 py-4 first:pt-0"
                 >
-                  <span className="font-mono text-xs text-paper/40">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-xs text-snow/40">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-display text-4xl font-semibold uppercase tracking-tight transition-transform duration-300 group-hover:translate-x-2 group-active:translate-x-2">
                     {t(`nav.${item.key}`)}
                   </span>
@@ -166,14 +169,14 @@ export default function Header() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="relative flex items-end justify-between border-t border-paper/10 pt-6"
+              className="relative flex items-end justify-between border-t border-snow/10 pt-6"
             >
-              <div className="font-mono text-xs uppercase tracking-[0.2em] text-paper/40">
+              <div className="font-mono text-xs uppercase tracking-[0.2em] text-snow/40">
                 Sant Joan les Fonts
                 <br />
                 Girona, ES
               </div>
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="mono-label !text-paper/70 hover:!text-paper">
+              <a href="#contact" onClick={() => setMenuOpen(false)} className="mono-label !text-snow/70 hover:!text-snow">
                 {t("hero.cta")} →
               </a>
             </motion.div>

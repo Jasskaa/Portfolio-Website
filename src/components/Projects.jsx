@@ -126,8 +126,8 @@ function ProjectCard({ item, wipLabel, viewLabel, index }) {
         </span>
       )}
 
-      <div className="grid-backdrop relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-ink/10 bg-mist/30">
-        <div className="transition-transform duration-500 ease-smooth group-hover:scale-110">
+      <div className="grid-backdrop relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-ink/10 bg-mist/30 p-6">
+        <div className="w-full transition-transform duration-500 ease-smooth group-hover:scale-105">
           <ProjectGlyph item={item} />
         </div>
       </div>
@@ -182,48 +182,124 @@ function ProjectGlyph({ item }) {
 
 const glyphClass = "text-ink/25 transition-colors group-hover:text-blueprint/60";
 
+// Full-card illustrations for the three real projects — hand-drawn line art
+// (no image-generation tool available), kept in the site's monochrome
+// blueprint style rather than photo-real mockups.
+
 function VitalisGlyph() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" className={glyphClass}>
-      <circle cx="36" cy="36" r="26" stroke="currentColor" strokeWidth="1.5" />
+    <svg viewBox="0 0 320 200" fill="none" className={glyphClass}>
+      {/* performance ring, floating left of the phone */}
+      <circle cx="70" cy="100" r="30" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="70" cy="100" r="30" stroke="currentColor" strokeWidth="3" strokeDasharray="60 130" strokeLinecap="round" />
+      <circle cx="70" cy="100" r="8" stroke="currentColor" strokeWidth="1.5" />
+
+      {/* phone / dashboard frame */}
+      <rect x="118" y="24" width="104" height="152" rx="16" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="140" cy="40" r="2" fill="currentColor" />
+      <line x1="150" y1="40" x2="172" y2="40" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+
+      {/* pulse line */}
       <path
-        d="M14 36h9l4-11 6 20 5-15 3 6h11"
+        d="M130 100h14l6-18 10 34 8-24 5 8h19"
         stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
+      {/* stat pills */}
+      <rect x="130" y="128" width="46" height="12" rx="6" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="130" y="146" width="66" height="12" rx="6" stroke="currentColor" strokeWidth="1.5" />
+
+      {/* notification badge */}
+      <circle cx="216" cy="30" r="11" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M216 25v10M211 30h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+
+      {/* floating data dots */}
+      <circle cx="252" cy="90" r="2" fill="currentColor" />
+      <circle cx="264" cy="110" r="2" fill="currentColor" />
+      <circle cx="248" cy="130" r="2" fill="currentColor" />
     </svg>
   );
 }
 
 function GmailSwipeGlyph() {
   return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" className={glyphClass}>
-      <rect x="14" y="16" width="34" height="24" rx="3" stroke="currentColor" strokeWidth="1.5" transform="rotate(-6 14 16)" />
-      <rect x="22" y="28" width="34" height="24" rx="3" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M52 34l7 6-7 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 320 200" fill="none" className={glyphClass}>
+      {/* fanned email cards */}
+      <g transform="rotate(-9 130 104)">
+        <rect x="70" y="64" width="120" height="80" rx="10" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="88" cy="82" r="6" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="102" y1="80" x2="150" y2="80" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="102" y1="90" x2="170" y2="90" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      </g>
+      <g transform="rotate(4 130 104)">
+        <rect x="78" y="70" width="120" height="80" rx="10" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="96" cy="88" r="6" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="110" y1="86" x2="158" y2="86" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="110" y1="96" x2="178" y2="96" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      </g>
+
+      {/* swipe motion trail + arrow */}
+      <path
+        d="M210 96c14 2 26 10 34 22"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeDasharray="1 7"
+      />
+      <path d="M236 110l10 10-13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* action icons */}
+      <g transform="translate(224 138)">
+        <rect x="0" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M-2 4h22M6 4V1h6v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </g>
+      <g transform="translate(258 138)">
+        <circle cx="10" cy="12" r="12" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M5 12l4 4 8-9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
     </svg>
   );
 }
 
 function VirusGlyph() {
-  return (
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" className={glyphClass}>
-      <circle cx="36" cy="36" r="14" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="36" cy="36" r="4" stroke="currentColor" strokeWidth="1.5" />
-      {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+  const spikeCard = (cx, cy, r) => (
+    <g>
+      <circle cx={cx} cy={cy} r={r} stroke="currentColor" strokeWidth="1.5" />
+      <circle cx={cx} cy={cy} r={r * 0.3} stroke="currentColor" strokeWidth="1.5" />
+      {[0, 60, 120, 180, 240, 300].map((deg) => (
         <line
           key={deg}
-          x1={36 + 14 * Math.cos((deg * Math.PI) / 180)}
-          y1={36 + 14 * Math.sin((deg * Math.PI) / 180)}
-          x2={36 + 22 * Math.cos((deg * Math.PI) / 180)}
-          y2={36 + 22 * Math.sin((deg * Math.PI) / 180)}
+          x1={cx + r * Math.cos((deg * Math.PI) / 180)}
+          y1={cy + r * Math.sin((deg * Math.PI) / 180)}
+          x2={cx + r * 1.5 * Math.cos((deg * Math.PI) / 180)}
+          y2={cy + r * 1.5 * Math.sin((deg * Math.PI) / 180)}
           stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
       ))}
+    </g>
+  );
+
+  return (
+    <svg viewBox="0 0 320 200" fill="none" className={glyphClass}>
+      {/* fanned playing cards — each rotates around its own center, like a
+          hand of cards, instead of orbiting a shared point */}
+      <g transform="rotate(-16 129 96)" opacity="0.5">
+        <rect x="92" y="44" width="74" height="104" rx="8" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <g transform="rotate(16 191 96)" opacity="0.5">
+        <rect x="154" y="44" width="74" height="104" rx="8" stroke="currentColor" strokeWidth="1.5" />
+      </g>
+      <g>
+        <rect x="123" y="34" width="74" height="104" rx="8" stroke="currentColor" strokeWidth="1.5" />
+        {spikeCard(160, 86, 15)}
+        <line x1="138" y1="120" x2="182" y2="120" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="145" y1="128" x2="175" y2="128" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      </g>
     </svg>
   );
 }

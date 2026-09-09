@@ -142,6 +142,9 @@ export const translations = {
         email: "Correo",
         message: "Mensaje",
         submit: "Enviar mensaje",
+        sending: "Enviando…",
+        success: "¡Mensaje enviado! Te responderé pronto.",
+        error: "Algo ha fallado. Escríbeme directo a",
       },
     },
     footer: {
@@ -291,6 +294,9 @@ export const translations = {
         email: "Email",
         message: "Message",
         submit: "Send message",
+        sending: "Sending…",
+        success: "Message sent! I'll get back to you soon.",
+        error: "Something went wrong. Email me directly at",
       },
     },
     footer: {

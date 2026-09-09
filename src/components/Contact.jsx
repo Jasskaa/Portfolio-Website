@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
 
 const fadeUp = {
@@ -11,6 +11,11 @@ const fadeUp = {
   }),
 };
 
+// Set VITE_WEB3FORMS_KEY in a .env file to send submissions straight to
+// your inbox via https://web3forms.com (free, no backend needed). Without
+// it, the form quietly falls back to opening the visitor's own mail client.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+
 export default function Contact() {
   const { t } = useLanguage();
   const info = t("contact.info");
@@ -18,17 +23,52 @@ export default function Contact() {
   const form = t("contact.form");
 
   const [values, setValues] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
   function handleChange(e) {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function openMailClient() {
     const subject = encodeURIComponent(`${values.name || "—"} — contacto desde el portfolio`);
     const body = encodeURIComponent(`${values.message}\n\n${values.name} · ${values.email}`);
     window.location.href = `mailto:${info.email}?subject=${subject}&body=${body}`;
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (e.target.botcheck.checked) return; // honeypot tripped — silently drop
+
+    if (!WEB3FORMS_KEY) {
+      openMailClient();
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `${values.name || "—"} — contacto desde el portfolio`,
+          from_name: "Jaskaran Singh — Portfolio",
+          name: values.name,
+          email: values.email,
+          message: values.message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setValues({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -105,19 +145,78 @@ export default function Contact() {
             onSubmit={handleSubmit}
             className="flex flex-col gap-6"
           >
-            <Field label={form.name} name="name" value={values.name} onChange={handleChange} required />
-            <Field label={form.email} name="email" type="email" value={values.email} onChange={handleChange} required />
-            <Field label={form.message} name="message" as="textarea" value={values.message} onChange={handleChange} required />
+            {/* Honeypot — invisible to people, catnip for bots */}
+            <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
-            <button
-              type="submit"
-              className="group mt-2 inline-flex w-fit items-center gap-3 rounded-full border border-ink px-6 py-3 font-display text-sm font-medium transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-ink hover:text-paper hover:shadow-[0_12px_24px_-12px_rgba(10,10,10,0.4)] active:translate-y-0 active:scale-95"
-            >
-              {form.submit}
-              <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </button>
+            <Field
+              label={form.name}
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              required
+              disabled={status === "sending"}
+            />
+            <Field
+              label={form.email}
+              name="email"
+              type="email"
+              value={values.email}
+              onChange={handleChange}
+              required
+              disabled={status === "sending"}
+            />
+            <Field
+              label={form.message}
+              name="message"
+              as="textarea"
+              value={values.message}
+              onChange={handleChange}
+              required
+              disabled={status === "sending"}
+            />
+
+            <div className="flex items-center gap-4">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="group mt-2 inline-flex w-fit items-center gap-3 rounded-full border border-ink px-6 py-3 font-display text-sm font-medium transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-ink hover:text-paper hover:shadow-[0_12px_24px_-12px_rgba(10,10,10,0.4)] active:translate-y-0 active:scale-95 disabled:pointer-events-none disabled:opacity-60"
+              >
+                {status === "sending" ? form.sending : form.submit}
+                {status !== "sending" && (
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                )}
+              </button>
+            </div>
+
+            <AnimatePresence mode="wait">
+              {status === "success" && (
+                <motion.p
+                  key="success"
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="mono-label !text-blueprint"
+                >
+                  {form.success}
+                </motion.p>
+              )}
+              {status === "error" && (
+                <motion.p
+                  key="error"
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="mono-label"
+                >
+                  {form.error}{" "}
+                  <a href={`mailto:${info.email}`} className="link-underline !text-ink">
+                    {info.email}
+                  </a>
+                </motion.p>
+              )}
+            </AnimatePresence>
           </motion.form>
         </div>
       </div>
@@ -125,7 +224,7 @@ export default function Contact() {
   );
 }
 
-function Field({ label, name, value, onChange, type = "text", as = "input", required = false }) {
+function Field({ label, name, value, onChange, type = "text", as = "input", required = false, disabled = false }) {
   const Comp = as;
   return (
     <label className="group block">
@@ -137,8 +236,9 @@ function Field({ label, name, value, onChange, type = "text", as = "input", requ
           value={value}
           onChange={onChange}
           required={required}
+          disabled={disabled}
           rows={as === "textarea" ? 5 : undefined}
-          className="w-full resize-none border-b border-ink/20 bg-transparent py-2 font-body text-base text-ink outline-none"
+          className="w-full resize-none border-b border-ink/20 bg-transparent py-2 font-body text-base text-ink outline-none disabled:opacity-50"
         />
         <span
           aria-hidden

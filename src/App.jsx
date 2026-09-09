@@ -5,10 +5,12 @@ import Experience from "./components/Experience.jsx";
 import Projects from "./components/Projects.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
 
 export default function App() {
   return (
     <>
+      <CustomCursor />
       <Header />
       <main>
         <Hero />

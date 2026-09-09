@@ -1,14 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#0a0a0a",
-        paper: "#fafaf8",
-        graphite: "#8a8a8a",
-        mist: "#e4e4e0",
-        blueprint: "#3d5a80",
+        // Theme-reactive tokens — driven by CSS variables so they flip with
+        // the `.dark` class (see src/index.css). The <alpha-value> placeholder
+        // is filled in by Tailwind when you use e.g. bg-ink/10.
+        ink: "rgb(var(--color-ink) / <alpha-value>)",
+        paper: "rgb(var(--color-paper) / <alpha-value>)",
+        graphite: "rgb(var(--color-graphite) / <alpha-value>)",
+        mist: "rgb(var(--color-mist) / <alpha-value>)",
+        blueprint: "rgb(var(--color-blueprint) / <alpha-value>)",
+        // Fixed, theme-independent tokens for the deliberately-always-dark
+        // surfaces (footer band, full-screen mobile menu).
+        void: "#0a0a0a",
+        snow: "#fafaf8",
       },
       fontFamily: {
         display: ["'Space Grotesk'", "Inter", "system-ui", "sans-serif"],
