@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    background-color: theme("colors.ink");
+    color: theme("colors.paper");
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Faint blueprint grid used as a section backdrop */
+  .grid-backdrop {
+    background-image:
+      linear-gradient(to right, theme("colors.ink" / 4%) 1px, transparent 1px),
+      linear-gradient(to bottom, theme("colors.ink" / 4%) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .mono-label {
+    @apply font-mono text-[0.7rem] tracking-[0.2em] uppercase text-graphite;
+  }
+
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute left-0 -bottom-1 h-px w-0 bg-blueprint transition-all duration-300 ease-smooth;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+/* Custom scrollbar, kept minimal */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: theme("colors.paper");
+}
+::-webkit-scrollbar-thumb {
+  background: theme("colors.mist");
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.graphite");
+}
