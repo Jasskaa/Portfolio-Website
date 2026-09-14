@@ -100,7 +100,7 @@ export default function CvModal({ open, onClose }) {
                   <span>
                     <span className="block font-display text-base font-medium tracking-tight">{opt.name}</span>
                     {opt.code === "de" && (
-                      <span className="mt-1 block max-w-[15rem] text-xs leading-snug text-graphite">{t("cvModal.deNote")}</span>
+                      <span className="mt-1 block max-w-[15rem] text-xs leading-snug text-graphite">{t("CV ADPT.")}</span>
                     )}
                   </span>
                   <span className="flex items-center gap-2 shrink-0">
