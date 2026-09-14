@@ -155,7 +155,6 @@ export const translations = {
     cvModal: {
       title: "Descargar CV",
       subtitle: "Elige el idioma del currículum.",
-      deNote: "Formato adaptado al mercado DACH: foto, permiso de trabajo y carta de motivación.",
       close: "Cerrar",
     },
   },
@@ -313,7 +312,6 @@ export const translations = {
     cvModal: {
       title: "Download CV",
       subtitle: "Choose the resume's language.",
-      deNote: "Format adapted for the DACH market: photo, work permit and cover letter.",
       close: "Close",
     },
   },
@@ -471,7 +469,6 @@ export const translations = {
     cvModal: {
       title: "Lebenslauf herunterladen",
       subtitle: "Wähle die Sprache des Lebenslaufs.",
-      deNote: "Für den DACH-Markt angepasstes Format: Foto, Arbeitserlaubnis und Anschreiben.",
       close: "Schließen",
     },
   },
