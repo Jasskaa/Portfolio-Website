@@ -152,6 +152,12 @@ export const translations = {
       back: "Volver arriba",
       rights: "Todos los derechos reservados.",
     },
+    cvModal: {
+      title: "Descargar CV",
+      subtitle: "Elige el idioma del currículum.",
+      deNote: "Formato adaptado al mercado DACH: foto, permiso de trabajo y carta de motivación.",
+      close: "Cerrar",
+    },
   },
   en: {
     nav: {
@@ -303,6 +309,170 @@ export const translations = {
       tagline: "Technical 3D Design & Full Stack Development",
       back: "Back to top",
       rights: "All rights reserved.",
+    },
+    cvModal: {
+      title: "Download CV",
+      subtitle: "Choose the resume's language.",
+      deNote: "Format adapted for the DACH market: photo, work permit and cover letter.",
+      close: "Close",
+    },
+  },
+  de: {
+    nav: {
+      home: "Start",
+      about: "Über mich",
+      experience: "Erfahrung",
+      projects: "Projekte",
+      contact: "Kontakt",
+    },
+    hero: {
+      kicker: "Technisches 3D-Design · Full-Stack-Entwicklung",
+      title1: "JASKARAN",
+      title2: "SINGH",
+      description:
+        "Ich entwerfe kundenspezifische Bauteile in SolidWorks und AutoCAD und baue Webprodukte von Grund auf. Zwei Handwerke, eine Leidenschaft: dass jedes Teil passt.",
+      cta: "Lass uns sprechen",
+      location: "Sant Joan les Fonts, Girona",
+      scroll: "Entdecken",
+      available: "Verfügbar für Projekte",
+    },
+    stats: {
+      experience: "Jahre Erfahrung",
+      sectors: "verschiedene Branchen",
+      languages: "Sprachen",
+    },
+    about: {
+      kicker: "Wer ich bin",
+      title: "Über mich",
+      paragraph1:
+        "Ich habe mit dem Bearbeiten von Bauteilen angefangen und bin beim Programmieren gelandet — dabei habe ich gemerkt, dass beide Handwerke dasselbe verlangen: Präzision, Iteration und die Lösung zu finden, die passt. Heute entwerfe ich bei Domoli kundenspezifische Bauteile in SolidWorks und AutoCAD und baue weiterhin Webprodukte von Grund auf, wenn ein Projekt es verlangt.",
+      paragraph2:
+        "Ich bin zwischen Katalanisch, Spanisch, Punjabi und Englisch aufgewachsen — diese Mischung zeigt sich in meiner Arbeitsweise: Ich passe mich schnell an unterschiedliche Teams, Kunden und Kontexte an.",
+      cvButton: "Lebenslauf herunterladen",
+      skillsTitle: "Werkzeuge & Skills",
+      skillGroups: [
+        {
+          label: "Technisches 3D-Design",
+          tags: ["SolidWorks", "AutoCAD", "Kundenspezifische Bauteile", "Blechfertigung", "Industrielles 3D-Design"],
+        },
+        {
+          label: "Entwicklung & Produkt",
+          tags: ["Full-Stack-Entwicklung", "Interface-Design", "Figma"],
+        },
+        {
+          label: "Management",
+          tags: ["Produktionsmanagement", "Qualitätskontrolle"],
+        },
+      ],
+    },
+    experience: {
+      kicker: "Werdegang",
+      title: "Erfahrung",
+      present: "Heute",
+      items: [
+        {
+          company: "Domoli S.L.",
+          role: "Technischer 3D-Designer",
+          start: "Sep 2024",
+          end: null,
+          description:
+            "Ich entwerfe kundenspezifische Bauteile nach Kundenanforderungen in SolidWorks und AutoCAD und betreue deren Blechfertigung von der Spezifikation bis zur Produktion.",
+        },
+        {
+          company: "ADS",
+          role: "Full-Stack-Entwickler",
+          start: "Feb 2024",
+          end: "Jun 2024",
+          description:
+            "Backend- und Frontend-Entwicklung für mehrere Kunden, über den gesamten Lebenszyklus eines Webprodukts hinweg.",
+        },
+        {
+          company: "HILOSA",
+          role: "Kolorist",
+          start: "Dez 2023",
+          end: "Feb 2024",
+          description: "Individuelle Farbabstimmung und Materialmischung nach den Wünschen jedes Kunden.",
+        },
+        {
+          company: "Tallers d'Hostoles",
+          role: "Industrieller 3D-Designer",
+          start: "Jun 2022",
+          end: "Sep 2022",
+          description: "3D-Design von Industrieanlagen, Budgetverwaltung und Produktionslogistik.",
+        },
+        {
+          company: "TAVIL",
+          role: "Produktionstechniker",
+          start: "Jun 2022",
+          end: "Sep 2022",
+          description: "Einrichtung und Wartung von Produktionslinien.",
+        },
+      ],
+    },
+    projects: {
+      kicker: "Arbeit",
+      title: "Projekte",
+      subtitle: "Eine Auswahl dessen, was ich gebaut habe. Technisches 3D-Design folgt in Kürze.",
+      filters: { all: "Alle", design3d: "3D-Design", web: "Webentwicklung" },
+      wip: "Platzhalter",
+      viewLabel: "Projekt ansehen",
+      empty: "Weitere Projekte dieser Kategorie folgen bald.",
+      items: [
+        {
+          icon: "vitalis",
+          category: "web",
+          title: "Vitalis",
+          url: "https://life-os-omega-six.vercel.app/",
+          tags: ["Web App", "Gesundheit & Leistung", "Google OAuth"],
+          description:
+            "Persönliches Gesundheits- und Leistungs-Ökosystem: KI-gestützte Ernährung, Routine-Synchronisation und biologische Metriken zentral in einem Dashboard.",
+        },
+        {
+          icon: "gmailswipe",
+          category: "web",
+          title: "Gmail Swipe",
+          url: "https://gmailswipe-umber.vercel.app/",
+          tags: ["Gmail API", "OAuth", "UX"],
+          description:
+            "Sortiere deinen Gmail-Posteingang per Wischkarten, wie bei Tinder: archivieren, löschen, markieren oder behalten. Eigenes Konto verbinden, verschlüsselte Tokens — nichts wird ohne Papierkorb gelöscht.",
+        },
+        {
+          icon: "virus",
+          category: "web",
+          title: "Joc del Virus",
+          url: "https://jasskaa.github.io/JocDelVirus/",
+          tags: ["JavaScript", "Spiel-KI", "Spieldesign"],
+          description:
+            "Digitale Adaption des Kartenspiels Virus (Tranjis Games): Ärzte und Wissenschaftler wetteifern darum, Viren auszurotten. Spieler gegen Spieler oder gegen die Maschine.",
+        },
+      ],
+    },
+    contact: {
+      kicker: "Kontakt",
+      title: "Lass uns sprechen",
+      description: "Hast du ein technisches Designprojekt, ein Webentwicklungsprojekt oder etwas, das beides verbindet? Erzähl mir davon.",
+      infoLabels: { phone: "Telefon", email: "E-Mail", location: "Standort" },
+      info: { phone: "+34 632 65 16 13", email: "jaskaranmr18@gmail.com", location: "Sant Joan les Fonts, Girona" },
+      form: {
+        name: "Name",
+        email: "E-Mail",
+        message: "Nachricht",
+        submit: "Nachricht senden",
+        sending: "Wird gesendet…",
+        success: "Nachricht gesendet! Ich melde mich bald bei dir.",
+        error: "Etwas ist schiefgelaufen. Schreib mir direkt an",
+      },
+    },
+    footer: {
+      tagline: "Technisches 3D-Design & Full-Stack-Entwicklung",
+      back: "Nach oben",
+      rights: "Alle Rechte vorbehalten.",
+    },
+    cvModal: {
+      title: "Lebenslauf herunterladen",
+      subtitle: "Wähle die Sprache des Lebenslaufs.",
+      deNote: "Für den DACH-Markt angepasstes Format: Foto, Arbeitserlaubnis und Anschreiben.",
+      close: "Schließen",
     },
   },
 };

@@ -3,12 +3,14 @@ import { translations } from "./translations";
 
 const LanguageContext = createContext(null);
 
+export const SUPPORTED_LANGS = ["es", "en", "de"];
+
 function getInitialLanguage() {
   if (typeof window === "undefined") return "es";
   const stored = window.localStorage.getItem("lang");
-  if (stored === "es" || stored === "en") return stored;
+  if (SUPPORTED_LANGS.includes(stored)) return stored;
   const browserLang = window.navigator.language?.slice(0, 2);
-  return browserLang === "en" ? "en" : "es";
+  return SUPPORTED_LANGS.includes(browserLang) ? browserLang : "es";
 }
 
 // Small helper to walk a dotted path like "hero.title1" against the dict.
@@ -29,7 +31,8 @@ export function LanguageProvider({ children }) {
   }, []);
 
   const toggleLanguage = useCallback(() => {
-    setLanguage(lang === "es" ? "en" : "es");
+    const next = SUPPORTED_LANGS[(SUPPORTED_LANGS.indexOf(lang) + 1) % SUPPORTED_LANGS.length];
+    setLanguage(next);
   }, [lang, setLanguage]);
 
   const t = useCallback(

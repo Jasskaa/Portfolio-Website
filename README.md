@@ -8,7 +8,7 @@ Portfolio personal de Jaskaran Singh (diseño técnico 3D + desarrollo full stac
 - **Tailwind CSS** — sistema de diseño (colores, tipografía, espaciados) en `tailwind.config.js`. Colores en variables CSS (`src/index.css`) para soportar dark mode sin tocar componentes.
 - **Framer Motion** — animaciones de componentes: entrada, hover, reveals al hacer scroll (`whileInView`), y el cursor personalizado.
 - **GSAP + ScrollTrigger** — animación de la línea de tiempo en Experiencia (`src/hooks/useScrollReveal.js`).
-- i18n propio, ligero, sin librería externa: `src/i18n/`.
+- i18n propio, ligero, sin librería externa: `src/i18n/` — ES / EN / DE.
 
 ## Desarrollo
 
@@ -65,4 +65,11 @@ Solo se activa en dispositivos con ratón real (`pointer: fine`) y respeta `pref
 
 ## CV
 
-`public/cv/CV-Jaskaran-Singh.pdf` — generado a partir de `src/i18n/translations.js` (mismo contenido que Experiencia/Skills/Idiomas de la web) con el mismo sistema visual del portfolio (Space Grotesk, JetBrains Mono, paleta ink/paper/blueprint, grid de fondo). Es un PDF real con texto vectorial, no una captura de pantalla. Si cambias tu experiencia en `translations.js`, recuerda regenerar también el PDF a mano (no se genera automáticamente en el build).
+El botón "Descargar CV" abre un popup animado (`src/components/CvModal.jsx`) con 3 idiomas:
+
+- `public/cv/CV-Jaskaran-Singh-ES.pdf` y `-EN.pdf` — una página, mismo sistema visual del portfolio (Space Grotesk, JetBrains Mono, paleta ink/paper/blueprint, grid de fondo). Contenido igual al de `translations.js`.
+- `public/cv/CV-Jaskaran-Singh-DE.pdf` — formato adaptado al mercado DACH, **dos páginas**:
+  - **Página 1 (Lebenslauf)**: foto placeholder (marcada "Foto folgt", a sustituir por una foto profesional real con fondo neutro), caja de "Persönliche Angaben" con Nationalität / Aufenthaltsstatus / Führerschein **marcados como `[bitte ergänzen]`** — son datos reales que solo tú puedes rellenar, no los he inventado — y nivel de alemán también pendiente de indicar.
+  - **Página 2 (Anschreiben)**: carta de motivación en alemán, con una nota "ENTWURF" arriba recordando que hay que personalizar empresa/puesto/párrafo específico antes de cada envío — texto entre `[corchetes]` en azul son los huecos a rellenar.
+
+Todos son PDFs reales con texto vectorial (no capturas de pantalla), generados con Chromium vía Playwright a partir de `C:\Users\otecnica4\Desktop\ClaudeCode\scratchpad\cv\` (fuente HTML: `cv-es.html`, `cv-en.html`, `cv-de.html`, más `render.mjs` para regenerarlos). Si cambias tu experiencia en `translations.js`, recuerda regenerar también los PDFs a mano (no se generan automáticamente en el build).

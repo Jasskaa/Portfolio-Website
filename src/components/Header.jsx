@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLanguage } from "../i18n/LanguageContext.jsx";
+import { SUPPORTED_LANGS, useLanguage } from "../i18n/LanguageContext.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const NAV_ITEMS = [
@@ -36,7 +36,7 @@ const itemVariants = {
 };
 
 export default function Header() {
-  const { t, lang, toggleLanguage } = useLanguage();
+  const { t, lang, setLanguage } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -89,17 +89,26 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <ThemeToggle dark={menuOpen} />
 
-          <button
-            onClick={toggleLanguage}
-            className={`mono-label flex items-center gap-1 rounded-full border px-3 py-1.5 transition-colors ${
-              menuOpen ? "border-snow/25 hover:border-snow/50" : "border-ink/15 hover:border-ink/40"
+          <div
+            className={`mono-label flex items-center gap-1 rounded-full border px-2.5 py-1.5 transition-colors ${
+              menuOpen ? "border-snow/25" : "border-ink/15"
             }`}
-            aria-label="Toggle language"
+            role="group"
+            aria-label="Select language"
           >
-            <span className={lang === "es" ? "" : "opacity-40"}>ES</span>
-            <span className="opacity-20">/</span>
-            <span className={lang === "en" ? "" : "opacity-40"}>EN</span>
-          </button>
+            {SUPPORTED_LANGS.map((code, i) => (
+              <span key={code} className="flex items-center">
+                {i > 0 && <span className="opacity-20 mx-0.5">/</span>}
+                <button
+                  onClick={() => setLanguage(code)}
+                  className={`px-0.5 transition-opacity hover:!opacity-100 ${lang === code ? "" : "opacity-40"}`}
+                  aria-pressed={lang === code}
+                >
+                  {code.toUpperCase()}
+                </button>
+              </span>
+            ))}
+          </div>
 
           <button
             onClick={() => setMenuOpen((v) => !v)}

@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
 import { useScrollReveal } from "../hooks/useScrollReveal.js";
+import CvModal from "./CvModal.jsx";
 
 const STATS = [
   { value: "4+", key: "experience" },
@@ -21,6 +22,7 @@ const fadeUp = {
 export default function About() {
   const { t } = useLanguage();
   const sectionRef = useRef(null);
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   useScrollReveal(sectionRef, ".about-stat", { y: 20, stagger: 0.1 });
   useScrollReveal(sectionRef, ".skill-group", { y: 24, stagger: 0.12 });
@@ -78,21 +80,22 @@ export default function About() {
               {t("about.paragraph2")}
             </motion.p>
 
-            <motion.a
+            <motion.button
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               custom={0.35}
-              href="/cv/CV-Jaskaran-Singh.pdf"
-              download
+              onClick={() => setCvModalOpen(true)}
               className="group mt-8 inline-flex items-center gap-3 rounded-full border border-ink px-6 py-3 font-display text-sm font-medium transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:bg-ink hover:text-paper hover:shadow-[0_12px_24px_-12px_rgba(10,10,10,0.4)] active:translate-y-0 active:scale-95"
             >
               {t("about.cvButton")}
               <span aria-hidden className="transition-transform group-hover:translate-y-0.5">
                 ↓
               </span>
-            </motion.a>
+            </motion.button>
+
+            <CvModal open={cvModalOpen} onClose={() => setCvModalOpen(false)} />
 
             {/* Stats row */}
             <div className="mt-16 grid grid-cols-3 gap-6 border-y border-ink/10 py-8">
