@@ -175,6 +175,8 @@ function ProjectGlyph({ item }) {
       return <GmailSwipeGlyph />;
     case "virus":
       return <VirusGlyph />;
+    case "syncparty":
+      return <SyncPartyGlyph />;
     default:
       return item.category === "web" ? <WebGlyph /> : <Design3DGlyph />;
   }
@@ -300,6 +302,34 @@ function VirusGlyph() {
         <line x1="138" y1="120" x2="182" y2="120" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <line x1="145" y1="128" x2="175" y2="128" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
       </g>
+    </svg>
+  );
+}
+
+function SyncPartyGlyph() {
+  return (
+    <svg viewBox="0 0 320 200" fill="none" className={glyphClass}>
+      {/* two screens playing the same video, wired together by a sync loop */}
+      <rect x="40" y="50" width="104" height="72" rx="8" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M80 72l24 14-24 14z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <line x1="40" y1="134" x2="144" y2="134" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+
+      <rect x="176" y="50" width="104" height="72" rx="8" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M216 72l24 14-24 14z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <line x1="176" y1="134" x2="280" y2="134" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+
+      {/* looping sync arrows linking the two screens */}
+      <path d="M150 84c9-11 21-11 30 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M175 79l5 5-7 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M170 98c-9 11-21 11-30 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M145 103l-5-5 7-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* shared chat bubble underneath, room code style */}
+      <rect x="126" y="146" width="68" height="34" rx="10" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M142 180l-6 12 15-12" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <circle cx="146" cy="163" r="2" fill="currentColor" />
+      <circle cx="160" cy="163" r="2" fill="currentColor" />
+      <circle cx="174" cy="163" r="2" fill="currentColor" />
     </svg>
   );
 }

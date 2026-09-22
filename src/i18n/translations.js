@@ -129,6 +129,15 @@ export const translations = {
           description:
             "Adaptación digital del juego de cartas Virus (Tranjis Games): médicos y científicos compitiendo por erradicar virus. Jugador contra jugador, o contra la máquina.",
         },
+        {
+          icon: "syncparty",
+          category: "web",
+          title: "SyncParty",
+          url: "https://github.com/Jasskaa/syncParty",
+          tags: ["Extensión Chrome", "WebSocket", "Chat en tiempo real"],
+          description:
+            "Extensión de Chrome + servidor Node.js para ver YouTube sincronizado en tiempo real con chat integrado, al estilo Teleparty: crea una sala, comparte el código de 6 caracteres y todo el mundo ve el mismo vídeo al segundo.",
+        },
       ],
     },
     contact: {
@@ -286,6 +295,15 @@ export const translations = {
           description:
             "Digital adaptation of the Virus card game (Tranjis Games): doctors and scientists racing to eradicate viruses. Player vs player, or vs the machine.",
         },
+        {
+          icon: "syncparty",
+          category: "web",
+          title: "SyncParty",
+          url: "https://github.com/Jasskaa/syncParty",
+          tags: ["Chrome Extension", "WebSocket", "Real-time chat"],
+          description:
+            "Chrome extension + Node.js server for watching YouTube in perfect sync with built-in chat, Teleparty-style: create a room, share the 6-character code, and everyone watches the same video down to the second.",
+        },
       ],
     },
     contact: {
@@ -442,6 +460,15 @@ export const translations = {
           tags: ["JavaScript", "Spiel-KI", "Spieldesign"],
           description:
             "Digitale Adaption des Kartenspiels Virus (Tranjis Games): Ärzte und Wissenschaftler wetteifern darum, Viren auszurotten. Spieler gegen Spieler oder gegen die Maschine.",
+        },
+        {
+          icon: "syncparty",
+          category: "web",
+          title: "SyncParty",
+          url: "https://github.com/Jasskaa/syncParty",
+          tags: ["Chrome-Erweiterung", "WebSocket", "Echtzeit-Chat"],
+          description:
+            "Chrome-Erweiterung + Node.js-Server für synchrones YouTube-Schauen mit integriertem Chat, im Stil von Teleparty: Raum erstellen, 6-stelligen Code teilen, und alle sehen dasselbe Video sekundengenau synchron.",
         },
       ],
     },
